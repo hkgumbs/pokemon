@@ -1,3 +1,5 @@
+var display = function() {
+
 var UI = require('ui');
 var Vector2 = require('vector2');
 
@@ -52,3 +54,6 @@ pos.y -= 145;
 // Start animation
 timeText.animate('position', pos, 1000);
 
+};
+
+module.exports = display;
