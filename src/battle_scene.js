@@ -41,23 +41,19 @@ function BattleScene(s, o, callback) {
     });
     
     var opponent_health_dec = new UI.Image({
-<<<<<<< HEAD
       position: new Vector2(5, 30),
-=======
-      position: new Vector2(7, 30),
->>>>>>> c58cac2d3921de13f427dd046f78adc26d0e8238
       size: new Vector2(80, 16),
       image: 'images/opponent_health_dec.png' 
     });
         
     var opponent_health_bar = new UI.Rect({
-      position: new Vector2(10, 34),
+      position: new Vector2(10, 32),
       size: new Vector2(56, 8),
       backgroundColor: 'black'
     });
             
     var opponent_health_level = new UI.Rect({
-      position: new Vector2(11, 35),
+      position: new Vector2(11, 33),
       size: new Vector2(this.opponent.health, 6),
       backgroundColor: 'white'
     });
@@ -77,7 +73,6 @@ function BattleScene(s, o, callback) {
     });
     
     /*
-<<<<<<< HEAD
     var self_level = new UI.Text({
       position: new Vector2(66, 56),
       size: new Vector2(56, 15),
@@ -92,13 +87,6 @@ function BattleScene(s, o, callback) {
       size: new Vector2(80, 16),
       image: 'images/self_health_dec.png' 
     });
-=======
-    var self_health_dec = new UI.Image({
-      position: new Vector2(7, 30),
-      size: new Vector2(80, 16),
-      image: 'images/self_health_dec.png' 
-    });*/
->>>>>>> c58cac2d3921de13f427dd046f78adc26d0e8238
   
     var self_health_bar = new UI.Rect({
       position: new Vector2(76, 96),
