@@ -1,122 +1,50 @@
 var i = require('./init');
 var b = require('./battle');
 
-localStorage.clear();
 
-i.init();
-
-function BattleBrain(){
-
-/*function Test(dict) {
-  this.name = dict.name;
-  return this;
-}
-
-var pokes = new Test({name:"Pikachu"});
-localStorage.setItem("pokelist",JSON.stringify(pokes));*/
-var pokelist = localStorage.getItem("pokelist");
-var pokemen = JSON.parse(pokelist);
-
-var poke1 = pokemen.p25;
-var poke2 = pokemen.p115;
-
-var UI = require('ui');
-var Vector2 = require('vector2');
-
-var main = new UI.Card({
-  title: 'Pokemon',
-  icon: 'images/25_front.png',
-});
-
-main.show();
-
-/*main.on('click', 'up', function(e) {
-  var menu = new UI.Menu({
-    sections: [{
-      items: [{
-        title: 'Pebble.js',
-        icon: 'images/menu_icon.png',
-        subtitle: 'Can do Menus'
-      }, {
-        title: 'Second Item',
-        subtitle: 'Subtitle Text'
-      }]
-    }]
-  });
+function BattleBrain(self, opponent){
+  this.self = self;
+  this.opponent = opponent;
   
-  menu.on('select', function(e) {
-    console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
-    console.log('The item is titled "' + e.item.title + '"');
-  });
-  menu.show();
-});*/
-
-main.on('click', 'select', function(e) {
-  var wind = new UI.Window();
-  var hp1 = poke1.physics.hp_base - poke1.physics.hp_taken;
-  var hp2 = poke2.physics.hp_base - poke2.physics.hp_taken;
-  var textfield = new UI.Text({
-    position: new Vector2(0, 50),
-    size: new Vector2(144, 30),
-    font: 'gothic-24-bold',
-    text: poke1.name + ": " + hp1 + "\n" + poke2.name + ": " + hp2,
-    textAlign: 'center'
-  });
-  wind.add(textfield);
-  wind.show();
+  //console.log(this.self.hp_base - this.self.hp_taken);
   
-  wind.on('click', 'down', function(e) {
-    var menu = new UI.Menu({
-      sections: [{
-        items: [{
-          title: poke1.move1.name,
-          subtitle: "PP: " + poke1.move1.pp,
-        }, {
-          title: poke1.move2.name,
-          subtitle: "PP: " + poke1.move2.pp,
-        }]
-      }]
-    });
-    
-    var thing = {"pokemon":pokemen.p25.physics};
-    
-    menu.on('select', function(e) {
-      console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
-      console.log('The item is titled "' + e.item.title + '"');
-      
-      /*switch(e.itemIndex) {
-        case 0: thing.move = poke1.move1; break;
-        case 1: thing.move = poke1.move2; break;
-        default: thing.move = poke1.move1; break;
-      }*/
-    });
-    
-    menu.show();
-    
-    for (var key in poke1.move1){
-      console.log(key + ": " + poke1.move1[key]);
-    }
-    
-    b.attack(poke1.physics,poke2.physics);
-    wind.hide();
-  });
+  this.calculate_damage = function(damage){
+    this.self.hp_taken += damage.hp;
+    this.self.attack_taken += damage.attack;
+    this.self.defense_taken += damage.defense;
+  };
   
-  wind.on('click', 'up', function(e) {
-   // var w = new UI.Window();
-    b.attack(pokemen.p115.physics,pokemen.p25.physics);
-    //hp = pokemen.p25.physics.hp_base - pokemen.p25.physics.hp_taken;
-    //w.text = hp;
-    wind.hide();
-  });
-});
-
-/*main.on('click', 'down', function(e) {
-  var card = new UI.Card();
-  card.title('A Card');
-  card.subtitle('Is a Window');
-  card.body('The simplest window type in Pebble.js.');
-  card.show();
-});*/
+  this.calculate_attack = function(move, callback) {
+    //TODO: throws when PP is no bueno
+    
+    var hp_given = 0;
+    var attack_given = 0;
+    var defense_given = 0;
+    //var hp_self = 0;
+    //var attack_self = 0;
+    //var defense_self = 0;
+    
+    var a = this.self.level;
+    var b = this.self.attack_base + this.self.attack_ext - this.self.attack_taken;
+    var c = move.power;
+    var d = this.opponent.defense_base + this.opponent.defense_ext;
+    //var x = STAB
+    var x = 1;
+    var y = 10;
+    var z = Math.floor(Math.random() * 255) + 217;
+  
+    hp_given = ((((((((2*a/5 + 2)*b*c)/d)/50 + 2)*x)*y)/10)*z)/255;
+    //var damage = 12;
+  
+    move.pp -= 1;
+    
+    this.opponent.hp_taken += hp_given;
+    this.opponent.attack_taken += attack_given;
+    this.opponent.defense_taken += defense_given;
+    
+    callback({attack: attack_given, defense: defense_given, hp: hp_given});
+    
+  }; 
 }
 
 module.exports = BattleBrain;
