@@ -30,13 +30,13 @@
                 "type": "font"
             },
             {
-                "file": "images/opponent_health_dec.png",
-                "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
+                "file": "images/self_health_dec.png",
+                "name": "IMAGES_SELF_HEALTH_DEC_PNG",
                 "type": "png"
             },
             {
-                "file": "images/menu.png",
-                "name": "IMAGES_MENU_PNG",
+                "file": "images/25_front.png",
+                "name": "IMAGES_25_FRONT_PNG",
                 "type": "png"
             },
             {
@@ -45,8 +45,13 @@
                 "type": "png"
             },
             {
-                "file": "images/25_front.png",
-                "name": "IMAGES_25_FRONT_PNG",
+                "file": "images/menu.png",
+                "name": "IMAGES_MENU_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/opponent_health_dec.png",
+                "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
                 "type": "png"
             }
         ]
@@ -59,5 +64,3 @@
         "watchface": false
     }
 }
-
-
