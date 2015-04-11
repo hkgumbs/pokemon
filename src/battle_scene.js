@@ -1,16 +1,16 @@
-function BattleScene(s, o) {
+function BattleScene(s, o, callback) {
   
   this.self = s;
   this.opponent = o;
   
-  this.display = function() {
+  var UI = require('ui');
+  var Vector2 = require('vector2'); 
+  // Create the Window
+  var window = new UI.Window({ fullscreen: true });
+    
+  this.attack_screen = function() {
   
-    var UI = require('ui');
-    var Vector2 = require('vector2');
-  
-    // Create the Window
-    var window = new UI.Window({ fullscreen: true });
-  
+ 
     //144x168
     var opponent_view = new UI.Rect({
       position: new Vector2(0, 0),
@@ -103,28 +103,7 @@ function BattleScene(s, o) {
       text: 'move1'
     });
     
-    window.on('click', 'up', function(e) {
-      var menu = new UI.Menu({
-        sections: [{
-          items: [{
-            title: 'Move 1'
-          }, {
-            title: 'Move 2'
-          }, {
-            title: 'Move 3'
-          }, {
-            title: 'Move 4'
-          }]
-        }]
-      });
-      
-      menu.on('select', function(e) {
-        console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
-        console.log('The item is titled "' + e.item.title + '"');
-      });
-        
-      menu.show();
-    });
+    
      
   
     // Add Rect to Window
@@ -153,7 +132,33 @@ function BattleScene(s, o) {
     });
   
   };
+  
+  if(callback){
+  	window.on('click', 'up', function(e){
+      var menu = new UI.Menu({
+        sections: [{
+          items: [{
+            title: 'Move 1'
+          }, {
+            title: 'Move 2'
+          }, {
+            title: 'Move 3'
+          }, {
+            title: 'Move 4'
+          }]
+        }]
+      });
+      
+      menu.on('select', function(e) {
+        console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
+        console.log('The item is titled "' + e.item.title + '"');
+      });
+        
+      menu.show();
+    });
+  }  
 
 }
+
   
 module.exports = BattleScene;
