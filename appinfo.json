@@ -28,7 +28,7 @@
                 "file": "fonts/UbuntuMono-Regular.ttf",
                 "name": "MONO_FONT_14",
                 "type": "font"
-            }
+            },
 	    {
                 "file": "images/25_front.png",
                 "name": "IMAGES_25_FRONT_PNG",
