@@ -3,6 +3,8 @@ function BattleScene(s, o, callback) {
   this.self = s;
   this.opponent = o;
   
+  //var bb = new BattleBrain(this.self, this.opponent);
+  
   var UI = require('ui');
   var Vector2 = require('vector2'); 
   // Create the Window
@@ -39,19 +41,19 @@ function BattleScene(s, o, callback) {
     });
     
     var opponent_health_dec = new UI.Image({
-      position: new Vector2(7, 30),
-      size: new Vector2(72, 14),
+      position: new Vector2(5, 30),
+      size: new Vector2(80, 16),
       image: 'images/opponent_health_dec.png' 
     });
         
     var opponent_health_bar = new UI.Rect({
-      position: new Vector2(10, 30),
+      position: new Vector2(10, 34),
       size: new Vector2(56, 8),
       backgroundColor: 'black'
     });
             
     var opponent_health_level = new UI.Rect({
-      position: new Vector2(11, 31),
+      position: new Vector2(11, 35),
       size: new Vector2(this.opponent.health, 6),
       backgroundColor: 'white'
     });
@@ -69,16 +71,32 @@ function BattleScene(s, o, callback) {
       color: 'black',
       text: this.self.name
     });
+    
+    /*
+    var self_level = new UI.Text({
+      position: new Vector2(66, 56),
+      size: new Vector2(56, 15),
+      font: 'gothic-14-bold',
+      color: 'black',
+      text: this.self.level
+    });*/
+    
+    
+    var self_health_dec = new UI.Image({
+      position: new Vector2(61, 93),
+      size: new Vector2(80, 16),
+      image: 'images/self_health_dec.png' 
+    });
   
     var self_health_bar = new UI.Rect({
-      position: new Vector2(66, 86),
+      position: new Vector2(76, 96),
       size: new Vector2(56, 10),
       backgroundColor: 'black'
     });
   
   
     var self_health_level = new UI.Rect({
-      position: new Vector2(67, 87),
+      position: new Vector2(77, 97),
       size: new Vector2(this.self.health, 8),
       backgroundColor: 'white'
     });
@@ -95,14 +113,7 @@ function BattleScene(s, o, callback) {
       image: 'images/menu.png'  
     });
     
-     var move_1 = new UI.Text({
-      position: new Vector2(20, 122),
-      size: new Vector2(20, 8),
-      font: 'gothic-18',
-      color: 'black',
-      text: 'move1'
-    });
-    
+  
     
      
   
@@ -116,40 +127,73 @@ function BattleScene(s, o, callback) {
     window.add(opponent_health_level);
     window.add(opponent_image);
     window.add(self_name);
+    window.add(self_health_dec);    
     window.add(self_health_bar);
     window.add(self_health_level);
     window.add(self_image);
     window.add(menu);
-    window.add(move_1);
   
   
     // Show the Window
     window.show();
   
     window.on('click', 'up', function() {
-    
+      
     
     });
   
   };
   
   if(callback){
+    // Create attack menu here
+    /*
+    var move_1 = new UI.Text({
+      position: new Vector2(20, 122),
+      size: new Vector2(20, 8),
+      font: 'gothic-18',
+      color: 'black',
+      text: 'move1'
+    });
+    
+    var x_coordinates = [];
+    var y_coordinates = [];
+    var arrow_position = 0;
+    
+    var arrow_image = new UI.Image({
+      position: new Vector2(x_coordinates[0], y_coordinates[0]),
+      size: new Vector2(9, 14),
+      image: 'images/arrow.png'  
+    });
+        
+   	window.on('click', 'down', function(e){    
+      if(arrow_position > 0)
+         arrow_position -= 1;       
+      var pos = arrow_image.position();
+      pos.y = y_coordinates[arrow_position];
+      pos.x = x_coordinates[arrow_position];
+      arrow_image.animate('position', pos, 0);
+    });
+    
+    window.add(move_1);*/
+    
   	window.on('click', 'up', function(e){
       var menu = new UI.Menu({
         sections: [{
           items: [{
-            title: 'Move 1'
+            title: 'Move 1'//this.self.moves[0]
           }, {
-            title: 'Move 2'
+            title: 'Move 2'//this.self.moves[1]
           }, {
-            title: 'Move 3'
+            title: 'Move 3'//this.self.moves[2]
           }, {
-            title: 'Move 4'
+            title: 'Move 4'//this.self.moves[3]
           }]
         }]
       });
       
       menu.on('select', function(e) {
+        //call brandon's method
+        //Go to "waiting" screen
         console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
         console.log('The item is titled "' + e.item.title + '"');
       });
