@@ -1,10 +1,12 @@
 var ui = require('ui');
 var ws_setup = require('./ws_setup');
 var battle_scene = require('./battle_scene');
+var battle_brain = require('./battle_brain');
 
 var main = new ui.Card({
   body: 'Waiting for server data...'
 });
 main.show();
 //ws_setup();
-battle_scene();
+//battle_scene();
+battle_brain();
