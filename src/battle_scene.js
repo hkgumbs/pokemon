@@ -40,7 +40,7 @@ function BattleScene(s, o, callback) {
     
     var opponent_health_dec = new UI.Image({
       position: new Vector2(7, 30),
-      size: new Vector2(72, 14),
+      size: new Vector2(80, 16),
       image: 'images/opponent_health_dec.png' 
     });
         
@@ -69,6 +69,13 @@ function BattleScene(s, o, callback) {
       color: 'black',
       text: this.self.name
     });
+    
+    /*
+    var self_health_dec = new UI.Image({
+      position: new Vector2(7, 30),
+      size: new Vector2(80, 16),
+      image: 'images/self_health_dec.png' 
+    });*/
   
     var self_health_bar = new UI.Rect({
       position: new Vector2(66, 86),
