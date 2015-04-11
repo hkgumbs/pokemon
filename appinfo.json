@@ -29,12 +29,26 @@
                 "name": "MONO_FONT_14",
                 "type": "font"
             },
-	    {
+            {
+                "file": "images/opponent_health_dec.png",
+                "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/menu.png",
+                "name": "IMAGES_MENU_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/25_back.png",
+                "name": "IMAGES_25_BACK_PNG",
+                "type": "png"
+            },
+            {
                 "file": "images/25_front.png",
                 "name": "IMAGES_25_FRONT_PNG",
                 "type": "png"
             }
-
         ]
     },
     "shortName": "Pokemon",
@@ -45,3 +59,5 @@
         "watchface": false
     }
 }
+
+
