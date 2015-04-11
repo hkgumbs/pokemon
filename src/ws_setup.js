@@ -1,25 +1,48 @@
+
 var ui = require('ui');
+var Pokebelt = require('./pokebelt');
+var BattleScene = require('./battle_scene');
 
-var init = function() {
-  var ws = new WebSocket('ws://pokemon-pebble.herokuapp.com');
-  ws.onmessage = function (event) {
+function Client() {
+  self = this;
+  self.ws = new WebSocket('ws://pokemon-pebble.herokuapp.com');
 
-      // temp
-      var card = new ui.Card({
-          body: event.data
-      });
-      card.show();
-
-      if (event.data == "Begin") {
-          // TODO start battle screen
-          // TODO it is this users turn
-      } else if (event.data == "Ready") {
-          // TODO start battle screen
-          // TODO user is waiting for attack
-      } else {
-          // TODO user is receiving an attack
-      }
+  self.respond = function(data) {
+    data.phase = 'ongoing';
+    self.ws.send(JSON.stringify(data));
   };
+
+  self.ws.onconnect = function() {
+    self.pokemon = Pokebelt.get(0);
+  };
+
+  self.ws.onmessage = function() {
+    switch(event.data.phase) {
+      case 'handshake':
+        self.first = JSON.parse(event.data.turn);
+        var packet = {
+          phase : 'init',
+          pokemon : self.pokemon;
+        };
+        self.ws.send(JSON.stringify(packet));
+        break;
+
+      case 'init':
+        var opponent = JSON.parse(event.data.pokemon);
+        var callback = self.first ? self.respond : null;
+        self.bs = new BattleScene(self.pokemon, self.opponent, callback);
+        break;
+
+      case 'ongoing':
+        self.bs.attack_screen(event.data, self.respond);
+        break;
+      };
+  };
+
+  // TODO implement some close or retry feature
+  // self.ws.onclose = function() {
+  //   self.bs.hide();
+  // };
 };
 
-module.exports = init;
+module.exports = Client;
