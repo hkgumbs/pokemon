@@ -30,6 +30,11 @@
                 "type": "font"
             },
             {
+                "file": "images/self_health_dec.png",
+                "name": "IMAGES_SELF_HEALTH_DEC_PNG",
+                "type": "png"
+            },
+            {
                 "file": "images/25_front.png",
                 "name": "IMAGES_25_FRONT_PNG",
                 "type": "png"
