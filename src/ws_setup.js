@@ -15,9 +15,10 @@ function Client() {
   };
 
   self.ws.onmessage = function(event) {
-    switch(event.data.phase) {
+    var info = JSON.parse(event.data)
+    switch(info.phase) {
       case 'handshake':
-        self.first = JSON.parse(event.data.turn);
+        self.first = info.turn;
         var packet = {
           phase : 'init',
           pokemon : self.pokemon,
@@ -26,13 +27,13 @@ function Client() {
         break;
 
       case 'init':
-        var opponent = JSON.parse(event.data.pokemon);
+        var opponent = info.pokemon;
         var callback = self.first ? self.respond : null;
         self.bs = new BattleScene(self.pokemon, opponent, callback);
         break;
 
       case 'ongoing':
-        self.bs.attack_screen(event.data, self.respond);
+        self.bs.attack_screen(info, self.respond);
         break;
       }
   };
