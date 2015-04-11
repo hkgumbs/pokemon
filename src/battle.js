@@ -1,6 +1,6 @@
-function attack(attack, defender) {
-  var attacker = attack.pokemon;
-  var move = attack.move;
+function attack(attacker, defender) {
+  //var attacker = attack.pokemon;
+  //var move = attack.move;
   
   /*var a = attacker.level;
   var b = attacker.attack_base + attacker.attack_ext;

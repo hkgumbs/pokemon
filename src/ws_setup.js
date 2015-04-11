@@ -22,7 +22,7 @@ function Client() {
         self.first = JSON.parse(event.data.turn);
         var packet = {
           phase : 'init',
-          pokemon : self.pokemon;
+          pokemon : self.pokemon,
         };
         self.ws.send(JSON.stringify(packet));
         break;
