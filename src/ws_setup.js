@@ -35,7 +35,7 @@ function Client() {
         self.bs.attack_screen(info, self.respond);
         break;
       }
-  };
+  });
 
   // TODO implement some close or retry feature
   // self.ws.onclose = function() {
