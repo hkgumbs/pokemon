@@ -31,11 +31,8 @@ function BattleBrain(self, opponent){
     var y = 1;
     var z = Math.floor(Math.random() * 255) + 217;
   
-<<<<<<< HEAD
     hp_given = Math.floor((((((((2*a/5 + 2)*b*c)/d)/50 + 2)*x)*y)*z)/255);
-=======
-    hp_given = (((((((2*a/5 + 2)*b*c)/d)/50 + 2)*x)*y)*z)/255;
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
+
     //var damage = 12;
   
     move.pp -= 1;

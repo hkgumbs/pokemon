@@ -1,35 +1,19 @@
-<<<<<<< HEAD
 var BattleBrain = require('./battle_brain');
 
-=======
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
 function BattleScene(s, o, callback) {
   
   var self = s;
   var opponent = o;
   var brain = new BattleBrain(self, opponent);
   
-<<<<<<< HEAD
-  //var bb = new BattleBrain(self, opponent);
-=======
-  //var bb = new BattleBrain(this.self, this.opponent);
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
-  
   var UI = require('ui');
   var Vector2 = require('vector2'); 
   // Create the Window
   var window = new UI.Window({ fullscreen: true });
-<<<<<<< HEAD
   
   //var smartie = new UI.Window();
   
   var update_battlefield = function(field) {
-=======
-    
-  this.attack_screen = function() {
-  
- 
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
     //144x168
     var opponent_view = new UI.Rect({
       position: new Vector2(0, 0),
@@ -43,21 +27,11 @@ function BattleScene(s, o, callback) {
       backgroundColor: 'white'
     });
     
-<<<<<<< HEAD
-    
     //var menu_view = new UI.Rect({
     //  position: new Vector2(0, 112),
     //  size: new Vector2(144, 56),
     //  backgroundColor: 'white'
     //}); 
-=======
-    /*
-    var menu_view = new UI.Rect({
-      position: new Vector2(0, 112),
-      size: new Vector2(144, 56),
-      backgroundColor: 'white'
-    }); */
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
   
     var opponent_name = new UI.Text({
       position: new Vector2(5, 0),
@@ -100,11 +74,7 @@ function BattleScene(s, o, callback) {
             
     var opponent_health_level = new UI.Rect({
       position: new Vector2(11, 36),
-<<<<<<< HEAD
       size: new Vector2(ohp_bar, 4),
-=======
-      size: new Vector2(this.opponent.health, 4),
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
       backgroundColor: 'white'
     });
   
@@ -161,11 +131,7 @@ function BattleScene(s, o, callback) {
     
     var self_health_level = new UI.Rect({
       position: new Vector2(74, 92),
-<<<<<<< HEAD
       size: new Vector2(shp_bar, 4),
-=======
-      size: new Vector2(this.self.health, 4),
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
       backgroundColor: 'white'
     });
     
@@ -174,11 +140,7 @@ function BattleScene(s, o, callback) {
       size: new Vector2(56, 15),
       font: 'gothic-14-bold',
       color: 'black',
-<<<<<<< HEAD
       text: shp + '/' + self.hp_base
-=======
-      text: '119/193'
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
     });
   
     var self_image = new UI.Image({
@@ -187,8 +149,6 @@ function BattleScene(s, o, callback) {
       image: self.image_back  
     });
       
-
-<<<<<<< HEAD
     
  
     // Add Rect to Window

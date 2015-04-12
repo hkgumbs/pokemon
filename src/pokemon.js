@@ -28,21 +28,10 @@ function Pokemon(poke_dict) {
   this.immune = poke_dict.immune;
   this.resistant = poke_dict.resistant;
   this.level_rate = poke_dict.level_rate;
-<<<<<<< HEAD
   this.moves=poke_dict.moves;
   this.image_front = poke_dict.image_front;
   this.image_back = poke_dict.image_back;
   this.get_hp = function(){
-=======
-  this.moves = [];
-  this.moves[0] = poke_dict.move1;
-  this.moves[1] = poke_dict.move2;
-  this.moves[2] = poke_dict.move3;
-  this.moves[3] = poke_dict.move4;
-
-  
-  /*this.get_hp = function(){
->>>>>>> acdb9099165340a3c7b7185a0e0a10acf31f9ae1
     return this.hp_base + this.hp_ext - this.hp_taken;
   };
 }
