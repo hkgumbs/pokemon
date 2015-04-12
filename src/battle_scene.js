@@ -1,4 +1,5 @@
 var BattleBrain = require('./battle_brain');
+var Vibe = require('ui/vibe');
 
 function BattleScene(s, o) {
   var myself = this;
@@ -17,7 +18,7 @@ function BattleScene(s, o) {
   var animate_elt = function(img) {
         var pos = img.position();
         pos.x += 7;
-        img.animate({ position: pos});
+        setTimeout(function(){ img.animate({ position: pos}); }, 1000);
         setTimeout(function(){ pos.x -= 7; img.animate({ position: pos}); }, 400);
   };
   
@@ -217,6 +218,7 @@ function BattleScene(s, o) {
         //var mess = display_message(dummy,msg);
         if(opponent.faint){
           display_message(dummy,"WINNER!");
+          Vibe.vibrate('long');
         } else {
           display_message(dummy,msg);
         }
@@ -236,6 +238,7 @@ function BattleScene(s, o) {
         menu_border(dummy);
         if(opponent.faint){
           display_message(dummy,"WINNER!");
+          Vibe.vibrate('long');
         } else {
           display_message(dummy,"Waiting...");
         }
@@ -356,6 +359,7 @@ function BattleScene(s, o) {
     this.attack_screen = function(cb) {
         myself.callback = cb;
         var dummy = new UI.Window({ fullscreen: true });
+        Vibe.vibrate('short');
         update_battlefield(dummy);
         menu_border(dummy);
         if(self.faint){
