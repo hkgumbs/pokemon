@@ -31,6 +31,7 @@ function Pokemon(poke_dict) {
   this.moves=poke_dict.moves;
   this.image_front = poke_dict.image_front;
   this.image_back = poke_dict.image_back;
+  this.faint = false;
   this.get_hp = function(){
     return this.hp_base + this.hp_ext - this.hp_taken;
   };

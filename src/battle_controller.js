@@ -33,6 +33,14 @@ function BattleController(s,o) {
   this.waiting_room = function(damage, callback) {
     brain.apply_damage(damage);
     
+    if(self.hp_taken >= self.hp_base){
+      self.faint = true;
+    }
+    
+    if(opponent.hp_taken >= opponent.hp_base){
+      opponent.faint = true;
+    }
+    
     if(callback !== null){
       bs.attack_screen(callback);
     } else {

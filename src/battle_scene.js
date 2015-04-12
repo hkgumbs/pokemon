@@ -63,6 +63,9 @@ function BattleScene(s, o) {
     });
     
     var ohp = opponent.hp_base - opponent.hp_taken;
+    if(opponent.faint){
+        ohp = 0;
+    }
     var ohp_bar = Math.ceil(ohp/opponent.hp_base * 60);
             
     var opponent_health_level = new UI.Rect({
@@ -106,7 +109,11 @@ function BattleScene(s, o) {
     });  
   
     var shp = self.hp_base - self.hp_taken;
+    if(self.faint){
+        shp = 0;
+    }
     var shp_bar = Math.ceil(shp/self.hp_base * 60);
+    
     
     var self_health_level = new UI.Rect({
       position: new Vector2(74, 92),
@@ -153,7 +160,6 @@ function BattleScene(s, o) {
 //  Your turn
   
     var display_message = function(field,msg){
-                
       var message = new UI.Text({
         position: new Vector2(20, 119),
         size: new Vector2(56, 15),
@@ -211,7 +217,11 @@ function BattleScene(s, o) {
         var dummy = new UI.Window({ fullscreen: true });
         update_battlefield(dummy);
         menu_border(dummy);
-        display_message(dummy,"Waiting...");
+        if(opponent.faint){
+          display_message(dummy,"WINNER!");
+        } else {
+          display_message(dummy,"Waiting...");
+        }
         window.hide();
         window = dummy;
         window.show();
@@ -309,9 +319,13 @@ function BattleScene(s, o) {
       
       field.on('click', 'select', function(e){
         brain.calculate_attack(self.moves[arrow_position],myself.callback);
-        post_attack(self.name + " used " + self.moves[arrow_position]);
+        post_attack(/*self.name + " used " + */self.moves[arrow_position]);
         //post_attack(self.name + " used " + self.moves[arrow_position]);
       });   
+      
+      field.on('longClick', 'select', function(e){
+        
+      });
 
     };
   
@@ -320,7 +334,11 @@ function BattleScene(s, o) {
         var dummy = new UI.Window({ fullscreen: true });
         update_battlefield(dummy);
         menu_border(dummy);
-        attack_menu(dummy);
+        if(self.faint){
+          display_message(dummy,"FAINTED!");
+        } else {
+          attack_menu(dummy);
+        }
         window.hide();
         window = dummy;
         window.show();

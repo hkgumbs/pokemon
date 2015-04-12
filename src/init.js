@@ -18,6 +18,8 @@ function init() {
     //localStorage.setItem(BASE_KEY, JSON.stringify({p25:dex.poke25, p115:dex.poke115}));
     belt.add(dex.poke25);
     belt.add(dex.poke115);
+    belt.add(dex.poke1);
+    belt.add(dex.poke131);
   }
 }
 
