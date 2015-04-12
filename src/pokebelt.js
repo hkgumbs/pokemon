@@ -3,12 +3,12 @@ var BASE_KEY = "POKEBELT_";
 
 var Pokebelt = {
     get : function(index) {
-        var pokemon = localStorage.get(BASE_KEY);
-        if (pokemon === null) {            
+//         var pokemon = localStorage.get(BASE_KEY);
+//         if (pokemon === null) {            
           var pok = {name: 'PIKACHU', health: 15, image_front: 'images/25_front.png', image_back: 'images/25_front.png'};
-          return pok;
-        } else
-            return JSON.parse(pokemon);
+//           return pok;
+//         } else
+//             return JSON.parse(pokemon);
     },
 
     save : function(index, pokemon) {
