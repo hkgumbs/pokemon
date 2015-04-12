@@ -11,36 +11,38 @@ function Client() {
     self.socket.send(JSON.stringify(data));
   };
 
-  self.socket.onmessage = function(data) {
-    console.log(data);
-    var info = JSON.stringify(data);
-    switch(info.phase) {
-      case 'handshake':
-        self.first = info.turn;
-        self.id = info.id;
-        var packet = {
-          phase : 'init',
-          pokemon : self.pokemon,
-        };
-        self.socket.send(JSON.stringify(packet));
-        break;
+  self.socket.onmessage = function(event) {
 
-      case 'init':
-        var opponent = info.pokemon;
-        var callback = self.first ? self.respond : null;
-        self.bs = new BattleScene(self.pokemon, opponent, callback);
-        break;
+    console.log(event.data);
+    var info = JSON.parse(event.data);
 
-      case 'ongoing':
+    if(info.phase == 'handshake') {
+      console.log('handshake');
+      self.first = info.turn;
+      self.id = info.id;
+      var packet = {
+        phase : 'init',
+        pokemon : self.pokemon,
+      };
+      self.socket.send(JSON.stringify(packet));
+    }
+
+    else if(info.phase == 'init') {
+      console.log('init');
+      var opponent = info.pokemon;
+      var callback = self.first ? self.respond : null;
+      self.bs = new BattleScene(self.pokemon, opponent, callback);
+    }
+
+    else if(info.phase == 'ongoing') {
+        console.log('ongoing');
         self.bs.attack_screen(info, self.respond);
-        break;
-      }
-  });
+    }
 
-  // TODO implement some close or retry feature
-  // self.ws.onclose = function() {
-  //   self.bs.hide();
-  // };
+    else {
+      console.log('default');
+    }
+  };
 }
 
 module.exports = Client;
