@@ -3,7 +3,7 @@ var BattleScene = require('./battle_scene');
 
 function Client() {
   var self = this;
-  self.socket = WebSocket('ws://pokemon-pebble.herokuapp.com');
+  self.socket = new WebSocket('ws://pokemon-pebble.herokuapp.com');
   self.pokemon = Pokebelt.get(0);
 
   self.respond = function(data) {
