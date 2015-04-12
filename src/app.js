@@ -1,5 +1,5 @@
 var i = require('./init');
-var Belt = require('./pokebelt');
+var ui = require('ui');
 var Client = require('./ws_setup');
 
 console.log('MAIN');

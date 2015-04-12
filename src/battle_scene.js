@@ -1,8 +1,8 @@
 var BattleBrain = require('./battle_brain');
 
 function BattleScene(s, o) {
-  
-  this.callback = null;
+  var myself = this;
+  myself.callback = null;
   var self = s;
   var opponent = o;
   var brain = new BattleBrain(self, opponent);
@@ -308,7 +308,7 @@ function BattleScene(s, o) {
       });   
       
       field.on('click', 'select', function(e){
-        brain.calculate_attack(self.moves[arrow_position],this.callback);
+        brain.calculate_attack(self.moves[arrow_position],myself.callback);
         post_attack(self.name + " used " + self.moves[arrow_position]);
         //post_attack(self.name + " used " + self.moves[arrow_position]);
       });   
@@ -316,7 +316,7 @@ function BattleScene(s, o) {
     };
   
     this.attack_screen = function(cb) {
-        this.callback = cb;
+        myself.callback = cb;
         var dummy = new UI.Window({ fullscreen: true });
         update_battlefield(dummy);
         menu_border(dummy);

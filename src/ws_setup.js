@@ -3,7 +3,7 @@ var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
-  self.socket = new WebSocket('ws://pokemon-pebble.herokuapp.com');
+  self.socket = new WebSocket('ws://1948af73.ngrok.com');
   self.pokemon = new Belt().get(0);
 
   self.respond = function(data) {
@@ -18,7 +18,7 @@ function Client() {
 
     if(info.phase == 'handshake') {
       console.log('handshake');
-      self.first = info.turn;
+      self.first = info.first;
       var packet = {
         phase : 'init',
         pokemon : self.pokemon,
