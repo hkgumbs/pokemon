@@ -18,12 +18,13 @@ module.exports.poke25 = new p.Pokemon({
   immune:[], 
   resistant:[],
   level_rate:0,
-  back_img:"images/25_back.png",
-  front_img:"images/25_front.png",
-  move1:m.move1,
+  image_back:"images/25_back.png",
+  image_front:"images/25_front.png",
+  moves:[m.move1, m.move5, m.move10, m.move33]
+  /*move1:m.move1,
   move2:m.move5,
   move3:m.move10,
-  move4:m.move33
+  move4:m.move33*/
 });
 
 module.exports.poke1 = new p.Pokemon({
@@ -43,12 +44,13 @@ module.exports.poke1 = new p.Pokemon({
   immune:[], 
   resistant:[],
   level_rate:0,
-  back_img:"images/1_back.png",
-  front_img:"images/1_front.png",
-  move1:m.move1,
+  image_back:"images/1_back.png",
+  image_front:"images/1_front.png",
+  moves:[m.move1, m.move5, m.move10, m.move33]
+  /*move1:m.move1,
   move2:m.move5,
   move3:m.move10,
-  move4:m.move33
+  move4:m.move33*/
 });
 
 module.exports.poke115 = new p.Pokemon({
@@ -68,12 +70,13 @@ module.exports.poke115 = new p.Pokemon({
   immune:[], 
   resistant:[],
   level_rate:0,
-  back_img:"images/115_back.png",
-  front_img:"images/115_front.png",
-  move1:m.move1,
+  image_back:"images/115_back.png",
+  image_front:"images/115_front.png",
+  moves:[m.move1, m.move5, m.move10, m.move33]
+  /*move1:m.move1,
   move2:m.move5,
   move3:m.move10,
-  move4:m.move33
+  move4:m.move33*/
 });
 
 module.exports.poke131 = new p.Pokemon({
@@ -93,10 +96,11 @@ module.exports.poke131 = new p.Pokemon({
   immune:[], 
   resistant:[],
   level_rate:0,
-  back_img:"images/131_back.png",
-  front_img:"images/131_front.png",
-  move1:m.move1,
+  image_back:"images/131_back.png",
+  image_front:"images/131_front.png",
+  moves:[m.move1, m.move5, m.move10, m.move33]
+  /*move1:m.move1,
   move2:m.move5,
   move3:m.move10,
-  move4:m.move33
+  move4:m.move33*/
 });

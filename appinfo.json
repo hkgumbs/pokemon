@@ -30,6 +30,21 @@
                 "type": "font"
             },
             {
+                "file": "images/arrow.png",
+                "name": "IMAGES_ARROW_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/115_back.png",
+                "name": "IMAGES_115_BACK_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/115_front.png",
+                "name": "IMAGES_115_FRONT_PNG",
+                "type": "png"
+            },
+            {
                 "file": "images/opponent_health_dec.png",
                 "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
                 "type": "png"
@@ -48,6 +63,11 @@
                 "file": "images/25_front.png",
                 "name": "IMAGES_25_FRONT_PNG",
                 "type": "png"
+            },
+            {
+                "file": "images/self_health_dec.png",
+                "name": "IMAGES_SELF_HEALTH_DEC_PNG",
+                "type": "png"
             }
         ]
     },
@@ -59,5 +79,3 @@
         "watchface": false
     }
 }
-
-

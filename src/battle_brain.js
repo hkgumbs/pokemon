@@ -1,6 +1,4 @@
-var i = require('./init');
-var b = require('./battle');
-
+console.log('BRAIN');
 
 function BattleBrain(self, opponent){
   this.self = self;
@@ -8,7 +6,7 @@ function BattleBrain(self, opponent){
   
   //console.log(this.self.hp_base - this.self.hp_taken);
   
-  this.calculate_damage = function(damage){
+  this.apply_damage = function(damage){
     this.self.hp_taken += damage.hp;
     this.self.attack_taken += damage.attack;
     this.self.defense_taken += damage.defense;
@@ -30,10 +28,10 @@ function BattleBrain(self, opponent){
     var d = this.opponent.defense_base + this.opponent.defense_ext;
     //var x = STAB
     var x = 1;
-    var y = 10;
+    var y = 1;
     var z = Math.floor(Math.random() * 255) + 217;
   
-    hp_given = ((((((((2*a/5 + 2)*b*c)/d)/50 + 2)*x)*y)/10)*z)/255;
+    hp_given = Math.floor((((((((2*a/5 + 2)*b*c)/d)/50 + 2)*x)*y)*z)/255);
     //var damage = 12;
   
     move.pp -= 1;
@@ -42,8 +40,8 @@ function BattleBrain(self, opponent){
     this.opponent.attack_taken += attack_given;
     this.opponent.defense_taken += defense_given;
     
-    callback({attack: attack_given, defense: defense_given, hp: hp_given});
-    
+    //callback({attack: attack_given, defense: defense_given, hp: hp_given});
+    return {attack: attack_given, defense: defense_given, hp: hp_given};
   }; 
 }
 
