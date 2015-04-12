@@ -1,11 +1,13 @@
-var ui = require('ui');
-
-
+var i = require('./init');
+var Belt = require('./pokebelt');
 var Client = require('./ws_setup');
-var BattleScene = require('./battle_scene');
 
+console.log('MAIN');
 var main = new ui.Card({
   body: 'Waiting for a nearby opponent...'
 });
 main.show();
+
+localStorage.clear();
+i.init();
 new Client();

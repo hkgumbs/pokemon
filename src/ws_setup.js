@@ -1,10 +1,10 @@
-var Pokebelt = require('./pokebelt');
-var BattleScene = require('./battle_scene');
+var Belt = require('./pokebelt');
+var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
   self.socket = new WebSocket('ws://pokemon-pebble.herokuapp.com');
-  self.pokemon = Pokebelt.get(0);
+  self.pokemon = new Belt().get(0);
 
   self.respond = function(data) {
     data.phase = 'ongoing';
@@ -19,7 +19,6 @@ function Client() {
     if(info.phase == 'handshake') {
       console.log('handshake');
       self.first = info.turn;
-      self.id = info.id;
       var packet = {
         phase : 'init',
         pokemon : self.pokemon,
@@ -31,12 +30,13 @@ function Client() {
       console.log('init');
       var opponent = info.pokemon;
       var callback = self.first ? self.respond : null;
-      self.bs = new BattleScene(self.pokemon, opponent, callback);
+      self.bc = new BattleController(self.pokemon, opponent);
+      self.bc.waiting_room({hp:0, attack:0, defense:0},callback);
     }
 
     else if(info.phase == 'ongoing') {
-        console.log('ongoing');
-        self.bs.attack_screen(info, self.respond);
+      console.log('ongoing');
+      self.bc.waiting_room(info,self.respond);
     }
 
     else {
