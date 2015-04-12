@@ -3,7 +3,7 @@ var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
-  self.socket = new WebSocket('ws://54.69.195.202');
+  self.socket = new WebSocket('ws://pokemon.ngrok.com');
   self.pokemon = new Belt().get(0);
 
   self.respond = function(data) {

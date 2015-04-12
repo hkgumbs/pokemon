@@ -14,7 +14,14 @@ function BattleScene(s, o) {
   
   //var smartie = new UI.Window();
   
-  var update_battlefield = function(field) {
+  var animate_elt = function(img) {
+        var pos = img.position();
+        pos.x += 7;
+        img.animate({ position: pos});
+        setTimeout(function(){ pos.x -= 7; img.animate({ position: pos}); }, 400);
+  };
+  
+  var update_battlefield = function(field, animate) {
     //144x168
     var opponent_view = new UI.Rect({
       position: new Vector2(0, 0),
@@ -133,7 +140,7 @@ function BattleScene(s, o) {
       position: new Vector2(0, 56),
       size: new Vector2(56, 56),
       image: self.image_back  
-    });
+    }); 
       
     
  
@@ -152,7 +159,12 @@ function BattleScene(s, o) {
     field.add(self_health_bar);
     field.add(self_health_level);
     field.add(self_hp);
-    field.add(self_image);    
+    field.add(self_image);
+    
+    if(animate){
+      animate_elt(self_image);
+    }
+    
     //window.show();
   };
    
@@ -200,15 +212,20 @@ function BattleScene(s, o) {
   
     var post_attack = function(msg) {
         var dummy = new UI.Window({ fullscreen: true });
-        update_battlefield(dummy);
+        update_battlefield(dummy,true);
         menu_border(dummy);
-        var mess = display_message(dummy,msg);
+        //var mess = display_message(dummy,msg);
+        if(opponent.faint){
+          display_message(dummy,"WINNER!");
+        } else {
+          display_message(dummy,msg);
+        }
         window.hide();
-        dummy.on('click', 'select', function(e){
+        /*dummy.on('click', 'select', function(e){
           dummy.remove(mess);
           display_message(dummy,"Waiting...");
           dummy.show();
-        });  
+        });*/
         window = dummy;
         window.show();
     };
@@ -319,7 +336,7 @@ function BattleScene(s, o) {
       
       field.on('click', 'select', function(e){
         brain.calculate_attack(self.moves[arrow_position],myself.callback);
-        post_attack(/*self.name + " used " + */self.moves[arrow_position]);
+        post_attack(/*self.name + " used " + */self.moves[arrow_position].name);
         //post_attack(self.name + " used " + self.moves[arrow_position]);
       });   
       
