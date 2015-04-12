@@ -1,39 +1,38 @@
 var Pokebelt = require('./pokebelt');
 var BattleScene = require('./battle_scene');
+var IO = require('./socket.io');
 
 function Client() {
   var self = this;
-  self.ws = new WebSocket('ws://pokemon-pebble.herokuapp.com');
+  self.socket = IO('ws://43272bb7.ngrok.com');
+  self.pokemon = Pokebelt.get(0);
 
   self.respond = function(data) {
     data.phase = 'ongoing';
-    self.ws.send(JSON.stringify(data));
+    self.socket.emit(self.id, data);
   };
 
-  self.ws.onconnect = function() {
-    self.pokemon = Pokebelt.get(0);
-  };
-
-  self.ws.onmessage = function(event) {
-    var info = JSON.parse(event.data)
-    switch(info.phase) {
+  self.socket.on('message', function(data) {
+    console.log(data);
+    switch(data.phase) {
       case 'handshake':
-        self.first = info.turn;
+        self.first = data.turn;
+        self.id = data.id;
         var packet = {
           phase : 'init',
           pokemon : self.pokemon,
         };
-        self.ws.send(JSON.stringify(packet));
+        self.socket.emit(self.id, packet);
         break;
 
       case 'init':
-        var opponent = info.pokemon;
+        var opponent = data.pokemon;
         var callback = self.first ? self.respond : null;
         self.bs = new BattleScene(self.pokemon, opponent, callback);
         break;
 
       case 'ongoing':
-        self.bs.attack_screen(info, self.respond);
+        self.bs.attack_screen(data, self.respond);
         break;
       }
   };
