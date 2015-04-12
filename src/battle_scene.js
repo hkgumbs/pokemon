@@ -336,6 +336,13 @@ function BattleScene(s, o) {
       
       field.on('click', 'select', function(e){
         brain.calculate_attack(self.moves[arrow_position],myself.callback);
+        if(self.hp_taken >= self.hp_base){
+            self.faint = true;
+          }
+    
+        if(opponent.hp_taken >= opponent.hp_base){
+            opponent.faint = true;
+        }
         post_attack(/*self.name + " used " + */self.moves[arrow_position].name);
         //post_attack(self.name + " used " + self.moves[arrow_position]);
       });   
