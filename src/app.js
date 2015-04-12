@@ -1,10 +1,5 @@
-//var ui = require('ui');
 var i = require('./init');
 var Belt = require('./pokebelt');
-//var BattleScene = require('./battle_scene');
-//var ws_setup = require('./ws_setup');
-//var battle_scene = require('./battle_scene');
-//var BattleBrain = require('./battle_brain');
 var BattleController = require('./battle_controller');
 
 console.log('MAIN');
@@ -12,15 +7,13 @@ console.log('MAIN');
 localStorage.clear();
 i.init();
 
-//var pokelist = localStorage.getItem("pokelist");
-//var pokemen = JSON.parse(pokelist);
-
 var belt = new Belt();
 var self = belt.get(0);
 var opponent = belt.get(1);
 
 var bc = new BattleController(self, opponent);
-bc.waiting_room({hp:12, attack:0, defense: 0}, 8);
+bc.waiting_room({hp:12, attack:0, defense: 0}, null);
+
 
 /*var ui = require('ui');
 var i = require('./init');

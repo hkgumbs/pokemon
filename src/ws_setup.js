@@ -1,5 +1,5 @@
 var Pokebelt = require('./pokebelt');
-var BattleScene = require('./battle_scene');
+var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
@@ -28,11 +28,14 @@ function Client() {
       case 'init':
         var opponent = info.pokemon;
         var callback = self.first ? self.respond : null;
-        self.bs = new BattleScene(self.pokemon, opponent, callback);
+        //self.bs = new BattleScene(self.pokemon, opponent, callback);
+        self.bc = new BattleController(self.pokemon, opponent);
+        self.bc.waiting_room({hp:0, attack:0, defense:0},callback);
         break;
 
       case 'ongoing':
-        self.bs.attack_screen(info, self.respond);
+        //self.bs.attack_screen(info, self.respond);
+        self.bc.waiting_room(info,self.respond);
         break;
       }
   };

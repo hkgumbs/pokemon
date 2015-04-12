@@ -41,7 +41,11 @@ function BattleBrain(self, opponent){
     this.opponent.attack_taken += attack_given;
     this.opponent.defense_taken += defense_given;
     
-    //callback({attack: attack_given, defense: defense_given, hp: hp_given});
+    if(callback){
+      callback({attack: attack_given, defense: defense_given, hp: hp_given});
+    }else{
+      console.log("CALLBACK IS NULL");
+    }
     return {attack: attack_given, defense: defense_given, hp: hp_given};
   }; 
 }
