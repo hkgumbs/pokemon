@@ -3,7 +3,7 @@ var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
-  self.socket = new WebSocket('ws://1948af73.ngrok.com');
+  self.socket = new WebSocket('ws://pokemon-pebble.herokuapp.com:3000');
   self.pokemon = new Belt().get(0);
 
   self.respond = function(data) {
