@@ -56,10 +56,12 @@ function Pokemon(poke_dict) {
   this.immune = poke_dict.immune;
   this.resistant = poke_dict.resistant;
   this.level_rate = poke_dict.level_rate;
-  this.move4 = poke_dict.move4;
-  this.move2 = poke_dict.move2;
-  this.move3 = poke_dict.move3;
-  this.move1 = poke_dict.move1;
+  this.moves = [];
+  this.moves[0] = poke_dict.move1;
+  this.moves[1] = poke_dict.move2;
+  this.moves[2] = poke_dict.move3;
+  this.moves[3] = poke_dict.move4;
+
   
   /*this.get_hp = function(){
     return this.hp_base + this.hp_ext - this.hp_taken;

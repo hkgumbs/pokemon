@@ -13,5 +13,6 @@ new Client();
 //ws_setup();
 
 //var s = {name: 'PIKACHU', health: 10, image_back: 'images/25_back.png'};
+//var o = {name: 'PIKACHU', health: 10, image_front: 'images/25_front.png'};
 //var bs = new BattleScene(s, o);
 //bs.attack_screen();
