@@ -30,53 +30,8 @@
                 "type": "font"
             },
             {
-                "file": "images/131_front.png",
-                "name": "IMAGES_131_FRONT_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/131_back.png",
-                "name": "IMAGES_131_BACK_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/115_front.png",
-                "name": "IMAGES_115_FRONT_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/115_back.png",
-                "name": "IMAGES_115_BACK_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/1_front.png",
-                "name": "IMAGES_1_FRONT_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/1_back.png",
-                "name": "IMAGES_1_BACK_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/self_health_dec.png",
-                "name": "IMAGES_SELF_HEALTH_DEC_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/25_front.png",
-                "name": "IMAGES_25_FRONT_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/25_back.png",
-                "name": "IMAGES_25_BACK_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/opponent_health_dec.png",
-                "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
+                "file": "images/arrow.png",
+                "name": "IMAGES_ARROW_PNG",
                 "type": "png"
             },
             {
@@ -85,8 +40,53 @@
                 "type": "png"
             },
             {
-                "file": "images/arrow.png",
-                "name": "IMAGES_ARROW_PNG",
+                "file": "images/opponent_health_dec.png",
+                "name": "IMAGES_OPPONENT_HEALTH_DEC_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/25_back.png",
+                "name": "IMAGES_25_BACK_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/25_front.png",
+                "name": "IMAGES_25_FRONT_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/self_health_dec.png",
+                "name": "IMAGES_SELF_HEALTH_DEC_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/1_back.png",
+                "name": "IMAGES_1_BACK_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/1_front.png",
+                "name": "IMAGES_1_FRONT_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/115_back.png",
+                "name": "IMAGES_115_BACK_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/115_front.png",
+                "name": "IMAGES_115_FRONT_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/131_back.png",
+                "name": "IMAGES_131_BACK_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/131_front.png",
+                "name": "IMAGES_131_FRONT_PNG",
                 "type": "png"
             }
         ]

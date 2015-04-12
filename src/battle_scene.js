@@ -18,7 +18,7 @@ function BattleScene(s, o) {
   var animate_elt = function(img) {
         var pos = img.position();
         pos.x += 7;
-        setTimeout(function(){ img.animate({ position: pos}); }, 1000);
+        img.animate({ position: pos});
         setTimeout(function(){ pos.x -= 7; img.animate({ position: pos}); }, 400);
   };
   
