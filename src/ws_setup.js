@@ -11,7 +11,7 @@ function Client() {
     self.socket.send(JSON.stringify(data));
   };
 
-  self.socket.on('message', function(data) {
+  self.socket.onmessage = function(data) {
     console.log(data);
     var info = JSON.stringify(data);
     switch(info.phase) {
