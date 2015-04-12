@@ -22,7 +22,7 @@ function Client() {
           phase : 'init',
           pokemon : self.pokemon,
         };
-        self.socket.send(JSON.stringify(packet);
+        self.socket.send(JSON.stringify(packet));
         break;
 
       case 'init':
