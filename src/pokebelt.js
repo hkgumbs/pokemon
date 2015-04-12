@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var dex = require('./pokedex');
 
 var BASE_KEY = "POKEBELT_";

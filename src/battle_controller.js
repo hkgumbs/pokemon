@@ -1,13 +1,18 @@
-var Belt = require('./pokebelt');
+//var Belt = require('./pokebelt');
 var BattleBrain = require('./battle_brain');
 var BattleScene = require('./battle_scene');
 
-function BattleController(s,o,c) {
-  var belt = new Belt();
-  var self = belt.get(0);
-  var opponent = belt.get(1);
+function BattleController(s,o) {
+  //var belt = new Belt();
+  //var self = belt.get(0);
+  //var opponent = belt.get(1);
   
-  //var brain = new BattleBrain(self,opponent);
+  var self = s;
+  var opponent = o;
+  //var callback = c;
+  
+  var brain = new BattleBrain(self,opponent);
+  var bs = new BattleScene(self, opponent);
   
   //for(var key in self){console.log(key + ": " + self[key]);}
   
@@ -25,8 +30,15 @@ function BattleController(s,o,c) {
   
   //for(var key in dam){console.log(key + ": " + dam[key]);}
   
-  var bs = new BattleScene(self, opponent);
-  var test = bs.attack_screen({attack: 0, defense: 0, hp: 13}, 5);
+  this.waiting_room = function(damage, callback) {
+    brain.apply_damage(damage);
+    
+    if(callback !== null){
+      bs.attack_screen(callback);
+    } else {
+      bs.wait_screen();
+    }
+  };
   
   /*this.defend = function(damage, cb) {
     

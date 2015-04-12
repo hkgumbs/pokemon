@@ -1,7 +1,8 @@
 var BattleBrain = require('./battle_brain');
 
-function BattleScene(s, o, callback) {
+function BattleScene(s, o) {
   
+  this.callback = null;
   var self = s;
   var opponent = o;
   var brain = new BattleBrain(self, opponent);
@@ -49,14 +50,6 @@ function BattleScene(s, o, callback) {
       text: ':L' + opponent.level
     });
     
-    var opponent_level = new UI.Text({
-      position: new Vector2(27, 14),
-      size: new Vector2(56, 15),
-      font: 'gothic-18-bold',
-      color: 'black',
-      text: ':L55'
-    });
-    
     var opponent_health_dec = new UI.Image({
       position: new Vector2(5, 33),
       size: new Vector2(80, 16),
@@ -98,20 +91,6 @@ function BattleScene(s, o, callback) {
       font: 'gothic-18-bold',
       color: 'black',
       text: ':L' + self.level
-    });    
-    
-    var self_health_dec = new UI.Image({
-      position: new Vector2(61, 93),
-      size: new Vector2(80, 16),
-      image: 'images/self_health_dec.png' 
-    });
-        
-    var self_level = new UI.Text({
-      position: new Vector2(90, 70),
-      size: new Vector2(56, 15),
-      font: 'gothic-18-bold',
-      color: 'black',
-      text: ':L61'
     });    
     
     var self_health_dec = new UI.Image({
@@ -184,6 +163,7 @@ function BattleScene(s, o, callback) {
       });   
       
       field.add(message);
+      return message;
     };
   
     /*this.attack_screen = function(damage, cb) {
@@ -211,11 +191,27 @@ function BattleScene(s, o, callback) {
 
       field.add(menu);
   };
-    var wait_screen = function(msg) {
+  
+    var post_attack = function(msg) {
         var dummy = new UI.Window({ fullscreen: true });
         update_battlefield(dummy);
         menu_border(dummy);
-        display_message(dummy,msg);
+        var mess = display_message(dummy,msg);
+        window.hide();
+        dummy.on('click', 'select', function(e){
+          dummy.remove(mess);
+          display_message(dummy,"Waiting...");
+          dummy.show();
+        });  
+        window = dummy;
+        window.show();
+    };
+  
+    this.wait_screen = function() {
+        var dummy = new UI.Window({ fullscreen: true });
+        update_battlefield(dummy);
+        menu_border(dummy);
+        display_message(dummy,"Waiting...");
         window.hide();
         window = dummy;
         window.show();
@@ -231,7 +227,7 @@ function BattleScene(s, o, callback) {
       var y_coordinates = [124, 140, 124, 140];
 
       var move_1 = new UI.Text({
-        position: new Vector2(20, 119),
+        position: new Vector2(20, 123),
         size: new Vector2(60, 8),
         font: 'gothic-14',
         color: 'black',
@@ -239,7 +235,7 @@ function BattleScene(s, o, callback) {
       });
 
       var move_2 = new UI.Text({
-        position: new Vector2(20, 135),
+        position: new Vector2(20, 139),
         size: new Vector2(60, 8),
         font: 'gothic-14',
         color: 'black',
@@ -247,7 +243,7 @@ function BattleScene(s, o, callback) {
       });
       
       var move_3 = new UI.Text({
-        position: new Vector2(80, 119),
+        position: new Vector2(80, 123),
         size: new Vector2(60, 8),
         font: 'gothic-14',
         color: 'black',
@@ -255,7 +251,7 @@ function BattleScene(s, o, callback) {
       });
       
       var move_4 = new UI.Text({
-        position: new Vector2(80, 135),
+        position: new Vector2(80, 139),
         size: new Vector2(60, 8),
         font: 'gothic-14',
         color: 'black',
@@ -313,13 +309,13 @@ function BattleScene(s, o, callback) {
       
       field.on('click', 'select', function(e){
         brain.calculate_attack(self.moves[arrow_position],null);
-        wait_screen(self.name + " used " + self.moves[arrow_position]);
+        post_attack(self.name + " used " + self.moves[arrow_position]);
         //post_attack(self.name + " used " + self.moves[arrow_position]);
       });   
 
     };
   
-    this.attack_screen = function(damage, cb) {
+    this.attack_screen = function(cb) {
         var dummy = new UI.Window({ fullscreen: true });
         update_battlefield(dummy);
         menu_border(dummy);
