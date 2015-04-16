@@ -3,7 +3,7 @@ var BattleController = require('./battle_controller');
 
 function Client() {
   var self = this;
-  self.socket = new WebSocket('ws://pokemon.ngrok.com');
+  self.socket = new WebSocket('wss://poketch.herokuapp.com');
   self.pokemon = new Belt().get(0);
 
   self.respond = function(data) {
@@ -11,8 +11,10 @@ function Client() {
     self.socket.send(JSON.stringify(data));
   };
 
-  self.socket.onmessage = function(event) {
-
+  
+  self.socket.onmessage = function(event) {    
+    //console.log(JSON.parse(event.data));    
+    
     console.log(event.data);
     var info = JSON.parse(event.data);
 
